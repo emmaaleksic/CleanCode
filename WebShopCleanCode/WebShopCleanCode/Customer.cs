@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WebShopCleanCode
+﻿namespace WebShopCleanCode
 {
     public class Customer
     {
@@ -48,38 +42,14 @@ namespace WebShopCleanCode
 
         public void PrintInfo()
         {
-            Console.WriteLine();
-            Console.Write("Username: " + Username + "");
-            if (password != null)
-            {
-                Console.Write(", Password: " + password);
-            }
-            if (FirstName != null)
-            {
-                Console.Write(", First Name: " + FirstName);
-            }
-            if (LastName != null)
-            {
-                Console.Write(", Last Name: " + LastName);
-            }
-            if (Email != null)
-            {
-                Console.Write(", Email: " + Email);
-            }
-            if (Age != -1)
-            {
-                Console.Write(", Age: " + Age);
-            }
-            if (Address != null)
-            {
-                Console.Write(", Address: " + Address);
-            }
-            if (PhoneNumber != null)
-            {
-                Console.Write(", Phone Number: " + PhoneNumber);
-            }
-            Console.WriteLine(", Funds: " + Funds);
-            Console.WriteLine();
+            Console.WriteLine("Username: " + Username +
+                             ", Password: " + password +
+                            ", First Name: " + FirstName +
+                            ", Last Name: " + LastName +
+                            ", Email: " + Email +
+                            ", Age: " + Age +
+                            ", Phone Number: " + PhoneNumber +
+                            ", Funds: " + Funds);
         }
 
         public void PrintOrders()
