@@ -1,35 +1,51 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WebShopCleanCode
+﻿namespace WebShopCleanCode
 {
     public class Database
     {
         // We just pretend this accesses a real database.
-        private List<Product> productsInDatabase;
+        private List<ProxyProduct> productsInDatabase;
         private List<Customer> customersInDatabase;
+
+        public Product GetProduct(string name, int price, int nrInStock)
+        {
+            return new Product(name, price, nrInStock);
+        }
         public Database()
         {
-            productsInDatabase = new List<Product>();
-            productsInDatabase.Add(new Product("Mirror", 300, 2));
-            productsInDatabase.Add(new Product("Car", 2000000, 2));
-            productsInDatabase.Add(new Product("Candle", 50, 2));
-            productsInDatabase.Add(new Product("Computer", 100000, 2));
-            productsInDatabase.Add(new Product("Game", 599, 2));
-            productsInDatabase.Add(new Product("Painting", 399, 2));
-            productsInDatabase.Add(new Product("Chair", 500, 2));
-            productsInDatabase.Add(new Product("Table", 1000, 2));
-            productsInDatabase.Add(new Product("Bed", 20000, 2));
+
+            productsInDatabase = new List<ProxyProduct>();
+
+            productsInDatabase.Add(new ProxyProduct("Mirror", 300, 2, this));
+            productsInDatabase.Add(new ProxyProduct("Car", 2000000, 2, this));
+            productsInDatabase.Add(new ProxyProduct("Candle", 50, 2, this));
+            productsInDatabase.Add(new ProxyProduct("Computer", 100000, 2, this));
+            productsInDatabase.Add(new ProxyProduct("Game", 599, 2, this));
+            productsInDatabase.Add(new ProxyProduct("Painting", 399, 2, this));
+            productsInDatabase.Add(new ProxyProduct("Chair", 500, 2, this));
+            productsInDatabase.Add(new ProxyProduct("Table", 1000, 2, this));
+            productsInDatabase.Add(new ProxyProduct("Bed", 20000, 2, this));
+
 
             customersInDatabase = new List<Customer>();
-            customersInDatabase.Add(new Customer("jimmy", "jimisthebest", "Jimmy", "Jamesson", "jj@mail.com", 22, "Big Street 5", "123456789"));
-            customersInDatabase.Add(new Customer("jake", "jake123", "Jake", null, null, 0, null, null));
+            CustomerBuilder customerBuilder = new CustomerBuilder();
+
+            Customer Jimmy = customerBuilder.SetUsername("jimmy")
+                           .SetPassword("jimisthebest")
+                           .SetFirstname("Jimmy")
+                           .SetEmail("jj@mail.com")
+                           .SetAge(22)
+                           .SetAdress("Big Street 5")
+                           .SetPhoneNumber("123456789")
+                           .Build();
+
+            Customer Jake = customerBuilder.SetUsername("jake")
+                           .SetPassword("jake123")
+                           .SetFirstname("Jake")
+                           .SetAge(0)
+                           .Build();
         }
 
-        public List<Product> GetProducts()
+        public List<ProxyProduct> GetProducts()
         {
             return productsInDatabase;
         }
