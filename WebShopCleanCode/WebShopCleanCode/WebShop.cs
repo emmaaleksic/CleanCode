@@ -286,19 +286,53 @@
 
             }
             // Would have liked to be able to quit at any time in here.
+            CustomerBuilder customerBuilder = new CustomerBuilder();
+
+            customerBuilder.SetUsername(newUsername);
+
             string newPassword = FillForm("password");
-            string firstName = FillForm("first name");
-            string lastName = FillForm("Last name");
-            string email = FillForm("email");
-            string address = FillForm("address");
-            string phoneNumber = FillForm("phone number");
-            int age = FillFormAge();
-            if (age == -1)
+            if(!newPassword.Equals(""))
             {
-                return;
+                customerBuilder.SetPassword(newPassword);
             }
 
-            Customer newCustomer = new Customer(newUsername, newPassword, firstName, lastName, email, age, address, phoneNumber);
+            string firstName = FillForm("first name");
+            if (!firstName.Equals("")) 
+            {
+                customerBuilder.SetFirstname(firstName);
+            }
+
+            string lastName = FillForm("Last name");
+            if (!lastName.Equals("")) 
+            {
+                customerBuilder.SetLastname(lastName);
+            }
+
+            string email = FillForm("email");
+            if (!email.Equals("")) 
+            {
+                customerBuilder.SetEmail(email);
+            }
+
+            string address = FillForm("address");
+            if (!address.Equals("")) 
+            {
+                customerBuilder.SetAddress(address);
+            }
+
+            string phoneNumber = FillForm("phone number");
+            if (!phoneNumber.Equals("")) 
+            {
+                customerBuilder.SetPhoneNumber(phoneNumber);  
+            }
+
+            int age = FillFormAge();
+            if (age != -1)
+            {
+                customerBuilder.SetAge(age);
+            }
+
+            Customer newCustomer = customerBuilder.Build();
             customers.Add(newCustomer);
             currentCustomer = newCustomer;
             PrintText(newCustomer.Username + " successfully added and is now logged in.");
@@ -498,7 +532,7 @@
                     if (currentCustomer != null)
                     {
                         option1 = "See your orders";
-                        option2 = "Set your info";
+                        option2 = "See your info";
                         option3 = "Add funds";
                         option4 = "";
                         amountOfOptions = 3;
@@ -600,7 +634,6 @@
                 PrintText("y or n, please.");
             }
         }
-
 
         private void bubbleSort(string variable, bool ascending)
         {

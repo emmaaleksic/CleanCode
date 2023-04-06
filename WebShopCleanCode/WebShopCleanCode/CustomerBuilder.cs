@@ -2,18 +2,20 @@
 {
     public class CustomerBuilder
     {
-        private string username;
+        public string Username { get; set; }
         private string password;
-        private string firstName;
-        private string lastName;
-        private string email;
-        private int age;
-        private string address;
-        private string phoneNumber;
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public int Age { get; set; }
+        public string Address { get; set; }
+        public string PhoneNumber { get; set; }
+        public int Funds { get; set; }
+        private List<Order> Orders { get; set; }
 
         public CustomerBuilder SetUsername(string username) 
         {
-            this.username = username;
+            this.Username = username;
             return this;
         }
 
@@ -24,38 +26,44 @@
         }
         public CustomerBuilder SetFirstname(string firstName)
         {
-            this.firstName = firstName;
+            this.FirstName = firstName;
             return this;
         }
         public CustomerBuilder SetLastname(string lastName)
         {
-            this.lastName = lastName;
+            this.LastName = lastName;
             return this;
         }
         public CustomerBuilder SetEmail(string email)
         {
-            this.email = email;
+            this.Email = email;
             return this;
         }
         public CustomerBuilder SetAge(int age)
         {
-            this.age = age;
+            this.Age = age;
             return this;
         }
-        public CustomerBuilder SetAdress(string address)
+        public CustomerBuilder SetAddress(string address)
         {
-            this.address = address;
+            this.Address = address;
             return this;
         }
         public CustomerBuilder SetPhoneNumber(string phoneNumber)
         {
-            this.phoneNumber = phoneNumber;
+            this.PhoneNumber = phoneNumber;
+            return this;
+        }
+
+        public CustomerBuilder funds(int Funds)
+        {
+            this.Funds = Funds;
             return this;
         }
 
         public Customer Build()
         {
-            return new Customer(username, password, firstName, lastName, email, age, address, phoneNumber);
+            return new Customer(Username, password, FirstName, LastName, Email, Age, Address, PhoneNumber);
         }
     }
 }
