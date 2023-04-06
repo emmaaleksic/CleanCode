@@ -4,14 +4,8 @@
     {
         public static void Main(string[] args)
         {
-
-
-
             WebShop webShop = new WebShop();
             webShop.Run();
-
-            
-            
         }
     }
 }

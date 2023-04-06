@@ -14,7 +14,6 @@
         {
 
             productsInDatabase = new List<ProxyProduct>();
-
             productsInDatabase.Add(new ProxyProduct("Mirror", 300, 2, this));
             productsInDatabase.Add(new ProxyProduct("Car", 2000000, 2, this));
             productsInDatabase.Add(new ProxyProduct("Candle", 50, 2, this));
@@ -28,13 +27,12 @@
 
             customersInDatabase = new List<Customer>();
             CustomerBuilder customerBuilder = new CustomerBuilder();
-
             Customer Jimmy = customerBuilder.SetUsername("jimmy")
                            .SetPassword("jimisthebest")
                            .SetFirstname("Jimmy")
                            .SetEmail("jj@mail.com")
                            .SetAge(22)
-                           .SetAdress("Big Street 5")
+                           .SetAddress("Big Street 5")
                            .SetPhoneNumber("123456789")
                            .Build();
 
@@ -43,6 +41,8 @@
                            .SetFirstname("Jake")
                            .SetAge(0)
                            .Build();
+            customersInDatabase.Add(Jimmy);
+            customersInDatabase.Add(Jake);
         }
 
         public List<ProxyProduct> GetProducts()

@@ -1,7 +1,8 @@
 ﻿namespace WebShopCleanCode
-{
+{       
     public class ProxyProduct : IProduct
-    {
+    { // Implementerat Proxy i products för att belasta vår "databas" varje gång användare ska kolla på produkterna som finns att köpa. 
+
         string Name;
         int Price;
         int NrInStock;

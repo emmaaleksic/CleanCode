@@ -33,7 +33,7 @@
 
         public bool CheckPassword(string password)
         {
-            if (password == null)
+            if (this.password == null)
             {
                 return true;
             }
